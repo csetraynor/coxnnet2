@@ -1,0 +1,10 @@
+Package: coxnnet2
+Title: Neural network survival analysis
+Version: 0.0.0.9000
+Authors@R: c(person("Travers", "Developer", role = c("aut", "cre"),email = "traversc@gmail.com"))
+Description: 
+Depends: R (>= 3.3.3)
+License: 
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1.9000
