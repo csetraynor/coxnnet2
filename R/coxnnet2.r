@@ -205,6 +205,7 @@ train_coxnnet <- function(model, max_iters=10000, optimizer=tf$train$AdamOptimiz
 #' @examples
 #' cross_validate_coxnnet()
 cross_validate_coxnnet <- function(X, time, event, nfolds=5, CV_var="dropout", var_steps=seq(0.1,0.9,0.1), model_params=list(), train_params=list(), CV_seed=1, plot=F) {
+
     set.seed(CV_seed)
     
     cv_matrix <- matrix(NA, nrow=length(var_steps), ncol=nfolds)
@@ -225,7 +226,7 @@ cross_validate_coxnnet <- function(X, time, event, nfolds=5, CV_var="dropout", v
             model <- train_params[["model"]] <- do.call(CoxNnetModel, model_params)
             model <- do.call(train_coxnnet, train_params)
             PI <- predict_coxnnet(model, X=X_val)[,1]
-            model["sess"]$close()
+            model[["sess"]]$close()
             rm(model)
             gc()
             cv_matrix[as.character(st), as.character(f)] <- cindex(PI, time_val, event_val)
